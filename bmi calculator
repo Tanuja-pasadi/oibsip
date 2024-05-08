@@ -1,0 +1,31 @@
+import string
+import random
+def password(length,letters=True,numbers=True,symbols=True):
+    chars=" "
+    if letters:
+        chars+=string.ascii_letters
+    if numbers :
+        chars+=string.digits
+    if symbols:
+        chars+=string.punctuation
+    if not chars:
+        print("Invalid input, please select valid options.")
+        return None
+    password=''.join(random.choice(chars) for _ in range(length))
+    return password
+print("Password Generator")
+
+while True:
+    try:
+        length=int(input("Enter the length of the password: "))
+        if length<=0:
+            print("Please enter the valid input")
+        else:
+            break
+    except ValueError:
+        print("Invalid input")
+letters=input("Do you want include letters (yes/no):").lower() in ['yes','y']
+numbers=input("Do you want include numbers (yes/no):").lower() in ['yes','y']
+symbols=input("Do you want include letters (yes/no):").lower() in ['yes','y']
+password=password(length,letters,numbers,symbols)
+print("Your generated password is :",password)
